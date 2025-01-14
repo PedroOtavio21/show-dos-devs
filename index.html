@@ -4,55 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz Interativo</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Link css -->
+  <link rel="stylesheet" href="./style.css">
+  
+  <!-- Link font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <!-- Container Principal -->
-  <div id="quiz-container">
+  <div class="quiz-container">
 
     <!-- Seção de Introdução -->
-    <section id="introducao" class="ativo">
-      <h1>Bem-vindo ao Quiz Interativo!</h1>
+    <section id="introduction" class="section-container introduction hidden">
+      <img src="./assets/image/logo.webp" alt="Logo show do milhão">
+      <h1>Bem-vindo ao nosso Quiz Interativo!</h1>
       <p>Teste seus conhecimentos e desbloqueie habilidades enquanto avança no jogo!</p>
-      <div class="botoes">
-        <button id="btn-iniciar">Iniciar Jogo</button>
-        <button id="btn-ajuda">Ajuda</button>
+      <div class="buttons-container">
+        <button id="btn-init" class="button">Iniciar Jogo</button>
+        <button id="btn-help" class="button">Ajuda</button>
       </div>
     </section>
 
     <!-- Seção de Ajuda -->
-    <section id="ajuda" class="oculto">
+    <section id="help" class="section-container hidden help">
       <h2>Como jogar</h2>
       <p>
-        O objetivo do jogo é responder corretamente às perguntas para acumular pontos 
-        e desbloquear habilidades. Clique em uma das respostas disponíveis para avançar.
+        O objetivo do jogo é <strong>responder corretamente às perguntas para acumular pontos 
+          e desbloquear habilidades</strong>. Clique em uma das respostas disponíveis para avançar.
       </p>
-      <p>Você pode utilizar suas habilidades estratégicas para obter dicas e melhorar seu desempenho!</p>
-      <button id="btn-voltar-introducao">Voltar</button>
+      <p>Você pode utilizar suas habilidades estratégicas para <strong>obter dicas e melhorar seu desempenho!</strong></p>
+      <button id="btn-back" class="button">Voltar</button>
     </section>
 
     <!-- Seção do Jogo -->
-    <section id="jogo" class="oculto">
+    <section id="game" class="section-container game">
       <header>
-        <span id="enunciado">Aqui aparecerá o enunciado da pergunta</span>
+        <span id="question" class="question">Aqui aparecerá o enunciado da pergunta</span>
       </header>
-      <div id="opcoes-respostas">
+      <div id="answers" class="answers-container">
         <!-- Botões das respostas (serão gerados dinamicamente pelo JavaScript) -->
-        <button class="resposta">Resposta 1</button>
-        <button class="resposta">Resposta 2</button>
-        <button class="resposta">Resposta 3</button>
-        <button class="resposta">Resposta 4</button>
+        <button class="answer">A:</button>
+        <button class="answer">B:</button>
+        <button class="answer">C:</button>
+        <button class="answer">D:</button>
       </div>
-      <div id="habilidades-jogador">
-        <h3>Habilidades</h3>
-        <button id="habilidade1" disabled>Habilidade 1</button>
-        <button id="habilidade2" disabled>Habilidade 2</button>
-        <button id="habilidade3" disabled>Habilidade 3</button>
+      <div id="habilities" class="habilities-container">
+        <button id="hability1" class="hability" disabled>P</button>
+        <button id="hability2" class="hability" disabled>E2</button>
+        <button id="hability3" class="hability" disabled>D</button>
       </div>
     </section>
 
   </div>
 
-  <script src="script.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
