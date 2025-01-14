@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Interativo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Container Principal -->
+  <div id="quiz-container">
+
+    <!-- Seção de Introdução -->
+    <section id="introducao" class="ativo">
+      <h1>Bem-vindo ao Quiz Interativo!</h1>
+      <p>Teste seus conhecimentos e desbloqueie habilidades enquanto avança no jogo!</p>
+      <div class="botoes">
+        <button id="btn-iniciar">Iniciar Jogo</button>
+        <button id="btn-ajuda">Ajuda</button>
+      </div>
+    </section>
+
+    <!-- Seção de Ajuda -->
+    <section id="ajuda" class="oculto">
+      <h2>Como jogar</h2>
+      <p>
+        O objetivo do jogo é responder corretamente às perguntas para acumular pontos 
+        e desbloquear habilidades. Clique em uma das respostas disponíveis para avançar.
+      </p>
+      <p>Você pode utilizar suas habilidades estratégicas para obter dicas e melhorar seu desempenho!</p>
+      <button id="btn-voltar-introducao">Voltar</button>
+    </section>
+
+    <!-- Seção do Jogo -->
+    <section id="jogo" class="oculto">
+      <header>
+        <span id="enunciado">Aqui aparecerá o enunciado da pergunta</span>
+      </header>
+      <div id="opcoes-respostas">
+        <!-- Botões das respostas (serão gerados dinamicamente pelo JavaScript) -->
+        <button class="resposta">Resposta 1</button>
+        <button class="resposta">Resposta 2</button>
+        <button class="resposta">Resposta 3</button>
+        <button class="resposta">Resposta 4</button>
+      </div>
+      <div id="habilidades-jogador">
+        <h3>Habilidades</h3>
+        <button id="habilidade1" disabled>Habilidade 1</button>
+        <button id="habilidade2" disabled>Habilidade 2</button>
+        <button id="habilidade3" disabled>Habilidade 3</button>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
