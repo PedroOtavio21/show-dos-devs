@@ -79,7 +79,7 @@ h1, h2 {
 
 .button {
     background-color: var(--color-btn);
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: var(--border-rd);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     color: var(--color-white);
@@ -87,7 +87,12 @@ h1, h2 {
     font-weight: bold;
     padding: .75rem 1rem;
     text-transform: uppercase;
+    transition: .2s;
     width: 180px;
+}
+
+.button:hover {
+    border: 2px solid var(--color-secondary);
 }
 
 .help h2 {
@@ -120,26 +125,38 @@ h1, h2 {
 
 .answer {
     background-color: var(--color-btn);
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     border-radius: var(--border-rd);
     color: var(--color-white);
     font-size: 1.125rem;
     /* text-align: left; */
     padding: .75rem 1rem;
+    transition: .2s;
+}
+
+.answer:hover {
+    border: 2px solid var(--color-secondary);
 }
 
 .habilities-container {
     display: flex;
     justify-content: space-around;
+    gap: var(--pd-lg);
 }
 
 .hability {
     background-color: var(--color-dark);
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 999px;
     color: var(--color-secondary);
     font-size: 1.125rem;
     padding: .5rem var(--border-rd);
+    transition: .2s;
+}
+
+.hability:hover {
+    border: 2px solid var(--color-secondary);
 }
 
 .hidden {
@@ -153,7 +170,21 @@ h1, h2 {
 }
 
 @media screen and (min-width: 768px){
+    .introduction h1,
+    .help h2 {
+        font-size: var(--pd-lg);
+    }
+
+    .introduction p,
+    .help p {
+        font-size: 1.25rem;
+    }
+
     .answers-container {
         grid-template-columns: repeat(2, 2fr);
+    }
+
+    .habilities-container {
+        justify-content: left;
     }
 }

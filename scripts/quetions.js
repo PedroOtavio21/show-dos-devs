@@ -20,3 +20,5 @@ const questions = [
       correctAnswer: 0,
     },
 ];
+
+export default questions
