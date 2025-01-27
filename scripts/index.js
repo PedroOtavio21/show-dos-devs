@@ -13,6 +13,16 @@ const nextContainer = document.getElementById('next')
 const answersContainer = document.getElementById('answers')
 const answerText = document.getElementById('question')
 
+// Recursos
+const btnSkip = document.getElementById('hability1')
+const btnEliminate = document.getElementById('hability2')
+const btnHint = document.getElementById('hability3')
+
+// Garantido que cada recurso seja usado apenas uma vez
+let usedSkip = false
+let usedEliminate = false
+let usedHint = false
+
 let currentIndexQuestion = 0
 let rigthAnswers = 0
 
@@ -21,9 +31,12 @@ btnHelp.addEventListener('click', initHelp)
 btnBackHome.addEventListener('click', backHome)
 btnNext.addEventListener('click', nextQuestion)
 
-function startGame(){
+function startGame() {
     initContainer.classList.add('hidden')
     gameContainer.classList.remove('hidden')
+    btnSkip.disabled = false
+    btnEliminate.disabled = false
+    btnHint.disabled = false
     nextQuestion()
 }
 
@@ -135,3 +148,64 @@ function backHome(){
         initContainer.classList.remove('hidden')
     }
 }
+
+// Botão de passar a questão
+btnSkip.addEventListener('click', () => {
+    if (!usedSkip) {
+      usedSkip = true
+      btnSkip.disabled = true
+      currentIndexQuestion++
+      nextQuestion()
+    }
+  })
+  
+  // Botão de eliminar duas opções falsas
+  btnEliminate.addEventListener('click', () => {
+    if (!usedEliminate) {
+      usedEliminate = true
+      btnEliminate.disabled = true
+      const incorrectAnswers = Array.from(document.querySelectorAll('.answer')).filter(
+        answer => !answer.dataset.correct
+      )
+  
+      // Remover até 2 respostas incorretas
+      incorrectAnswers.slice(0, 2).forEach(answer => {
+        answer.classList.add('hidden')
+      })
+    }
+  })
+  
+  // Botão de dica (mostra a probabilidade de uma resposta estar certa)
+  btnHint.addEventListener('click', () => {
+    if (!usedHint) {
+      usedHint = true
+      btnHint.disabled = true
+  
+      const allAnswers = Array.from(document.querySelectorAll('.answer'))
+      const correctAnswer = allAnswers.find(answer => answer.dataset.correct)
+  
+      // Definir porcentagem da resposta correta
+      const correctProbability = Math.floor(Math.random() * 21) + 70 // Entre 70% e 90%
+      const remainingProbability = 100 - correctProbability
+  
+      // Distribuir a porcentagem restante igualmente entre as respostas incorretas
+      const incorrectAnswers = allAnswers.filter(answer => !answer.dataset.correct)
+      const sharedProbability = Math.floor(remainingProbability / incorrectAnswers.length)
+      const leftover = remainingProbability % incorrectAnswers.length
+  
+      // Aplicar porcentagens a cada resposta
+      allAnswers.forEach((answer, index) => {
+        let probability
+        if (answer === correctAnswer) {
+          probability = correctProbability
+        } else {
+          probability = sharedProbability
+          // Adicionar o "leftover" à última resposta incorreta para completar 100%
+          if (index === allAnswers.length - 1 && incorrectAnswers.includes(answer)) {
+            probability += leftover
+          }
+        }
+        answer.textContent += ` (${probability}%)`
+      })
+    }
+})
