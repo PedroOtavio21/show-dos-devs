@@ -1,4 +1,4 @@
-
+/* Variáveis */
 :root {
     --border-rd: .75rem;
     
@@ -19,6 +19,7 @@
     --pd-lg: 2.5rem;
 }
 
+/* Padronização de estilos */
 * {
     box-sizing: border-box;
     font-family: var(--font-family);
@@ -36,6 +37,7 @@ h1, h2 {
     text-transform: uppercase;
 }
 
+/* Container principal */
 .quiz-container {
     max-width: 100%;
     min-height: 100vh;
@@ -45,17 +47,19 @@ h1, h2 {
     text-align: center;
 }
 
+/* Seção que engloba cada "página do jogo" (Introdução, Ajuda e Jogo)*/
 .section-container {
     background-color: var(--color-primary-300);
     border-radius: .75rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     display: flex;
     flex-direction: column;
-    /* max-width: 1080px; */
+    /* width: 1080px; */
     gap: var(--pd-sm);
     padding: var(--pd-sm);
 }
 
+/* Introdução */
 .introduction img {
     border-radius: 999px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
@@ -99,6 +103,7 @@ h1, h2 {
     border: 2px solid var(--color-secondary);
 }
 
+/* Ajuda */
 .help h2 {
     font-size: var(--pd-md);
 }
@@ -117,6 +122,7 @@ h1, h2 {
     margin: 0 auto;
 }
 
+/* Jogo */
 .game .question {
     font-size: var(--pd-sm);
 }
@@ -148,6 +154,7 @@ h1, h2 {
     border: 2px solid var(--color-secondary);
 }
 
+/* Habilidades */
 .habilities-container {
     display: flex;
     justify-content: space-around;
@@ -184,6 +191,7 @@ h1, h2 {
     background-color: var(--color-primary-300);
 }
 
+/* Estilos auxiliares */
 .hidden {
     display: none;
 }
@@ -200,6 +208,17 @@ h1, h2 {
     margin: 0 auto;
 }
 
+.paragraph {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.resultado-jogo {
+    font-weight: bold;
+    color: #ff0000; /* Exemplo de cor vermelha */
+}
+
+/* Responsividade em aparelhos maiores */
 @media screen and (min-width: 481px) {
     .answer {
         text-align: left;
@@ -207,6 +226,9 @@ h1, h2 {
 }
 
 @media screen and (min-width: 768px){
+    .section-container {
+        width: 1080px;
+    }
     .introduction h1,
     .help h2 {
         font-size: var(--pd-lg);
@@ -222,6 +244,6 @@ h1, h2 {
     }
 
     .habilities-container {
-        justify-content: left;
+        justify-content: right;
     }
 }
