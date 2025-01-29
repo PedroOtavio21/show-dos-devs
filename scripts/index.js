@@ -1,5 +1,7 @@
+// Importação de banco de questões
 import questions from './quetions.js'
 
+// Adquirindo principais botões e sessões pelo DOM
 const btnStartGame = document.getElementById('btn-init')
 const btnHelp = document.getElementById('btn-help')
 const btnBackHome = document.getElementById('btn-back')
@@ -13,7 +15,7 @@ const nextContainer = document.getElementById('next')
 const answersContainer = document.getElementById('answers')
 const answerText = document.getElementById('question')
 
-// Recursos
+// Recursos / Habilidades
 const btnSkip = document.getElementById('hability1')
 const btnEliminate = document.getElementById('hability2')
 const btnHint = document.getElementById('hability3')
@@ -23,14 +25,17 @@ let usedSkip = false
 let usedEliminate = false
 let usedHint = false
 
+// Indice de questões
 let currentIndexQuestion = 0
 let rigthAnswers = 0
 
+// Adicionando eventos aos botões selecionados acima
 btnStartGame.addEventListener('click', startGame)
 btnHelp.addEventListener('click', initHelp)
 btnBackHome.addEventListener('click', backHome)
 btnNext.addEventListener('click', nextQuestion)
 
+// Inicializa o quiz
 function startGame() {
     initContainer.classList.add('hidden')
     gameContainer.classList.remove('hidden')
@@ -40,6 +45,7 @@ function startGame() {
     nextQuestion()
 }
 
+// Reseta todas as questões presentes do questionário
 function resetStates(){
     while(answersContainer.firstChild){
         answersContainer.removeChild(answersContainer.firstChild)
@@ -49,6 +55,7 @@ function resetStates(){
     nextContainer.classList.add('hidden')
 }
 
+// Passa para a próxima questão
 function nextQuestion(){
     resetStates()
 
@@ -69,6 +76,7 @@ function nextQuestion(){
     })
 }
 
+// Verifica se questão está certa ou errada
 function selectAnswer(event){
     const answerClicked = event.target
     if(answerClicked.dataset.correct){
@@ -92,6 +100,7 @@ function selectAnswer(event){
     currentIndexQuestion++
 }
 
+// Exibe uma mensagem ao final do jogo, dependendo da performance do jogador
 function finishGame(){
     const totalQuestions = questions.length
     const performance = Math.floor(rigthAnswers * 100 / totalQuestions)
@@ -115,11 +124,13 @@ function finishGame(){
     createFinalMessage(rigthAnswers, totalQuestions, message)
 }
 
+// Cria a mensagem que será exibida no final do jogo
 function createFinalMessage(rigthAnswers, totalQuestions, message) {
     const p = document.createElement('p')
+    p.classList.add('paragraph')
     p.innerHTML = `
         Você acertou ${rigthAnswers} de ${totalQuestions} questões!
-        <span>Resultado do Jogo: ${message}</span>
+        <span class="resultado-jogo">Resultado do Jogo: ${message}</span>
     `
 
     const button = document.createElement('button')
@@ -134,7 +145,7 @@ function createFinalMessage(rigthAnswers, totalQuestions, message) {
     gameContainer.appendChild(button)
 }
 
-
+// Verifica se sessão de ajuda deverá ser oculta
 function initHelp(){
     if(helpContainer.classList.contains('hidden')){
         initContainer.classList.add('hidden')
@@ -142,6 +153,7 @@ function initHelp(){
     }
 }
 
+// Volta para a sessão de início ao clicar no botão de voltar
 function backHome(){
     if(initContainer.classList.contains('hidden')){
         helpContainer.classList.add('hidden')
