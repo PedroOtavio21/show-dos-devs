@@ -25,15 +25,19 @@ Este projeto consiste em um quiz interativo voltado para o ensino de conceitos d
 ```
 
 ### Funcionalidades / TO-DO ☑️
-- []. Estrutura geral de código html
-- []. Adicionar classes e id´s em html
-- []. Estilizar o css conforme o necessário
-- []. Adicionar uma responsividade completa
-- []. Aplicar a lógica principal do jogo
-- []. Adicionar habilidades do jogador (Passar, eliminar 2 e dica da plateia)
-- []. Adicionar uma forma de "salvar" o estado do jogo
-- []. Adicionar sons e vídeo no jogo
-- []. Enviar o diretório para a hospedagem gratuita 
+**Principais atividades:**
+- [x]. Estrutura geral de código html
+- [x]. Adicionar classes e id´s em html
+- [x]. Estilizar o css conforme o necessário
+- [x]. Aplicar a lógica principal do jogo
+- [x]. Adicionar habilidades do jogador (Passar, eliminar 2 e dica da plateia)
+- [ ]. Enviar o diretório para a hospedagem gratuita 
+
+**Extras:**
+- [ ]. Verificar a responsividade completa
+- [ ]. Verificar lógica de habilidades (1 por rodada)
+- [ ]. Implementar uma maneira de salvar o progresso do jogo
+- [ ]. Adicionar sons e vídeo no jogo
 
 ### Como Colaborar
 
