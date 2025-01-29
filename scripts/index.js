@@ -20,16 +20,16 @@ const btnSkip = document.getElementById('hability1')
 const btnEliminate = document.getElementById('hability2')
 const btnHint = document.getElementById('hability3')
 
-// Garantido que cada recurso seja usado apenas uma vez
+// Garantindo que cada recurso seja usado apenas uma vez
 let usedSkip = false
 let usedEliminate = false
 let usedHint = false
 
-// Indice de questões
+// Índice de questões
 let currentIndexQuestion = 0
-let rigthAnswers = 0
+let rightAnswers = 0
 
-// Adicionando eventos aos botões selecionados acima
+// Adicionando eventos aos botões
 btnStartGame.addEventListener('click', startGame)
 btnHelp.addEventListener('click', initHelp)
 btnBackHome.addEventListener('click', backHome)
@@ -45,9 +45,9 @@ function startGame() {
     nextQuestion()
 }
 
-// Reseta todas as questões presentes do questionário
-function resetStates(){
-    while(answersContainer.firstChild){
+// Reseta as questões anteriores
+function resetStates() {
+    while (answersContainer.firstChild) {
         answersContainer.removeChild(answersContainer.firstChild)
     }
 
@@ -56,43 +56,45 @@ function resetStates(){
 }
 
 // Passa para a próxima questão
-function nextQuestion(){
+function nextQuestion() {
     resetStates()
 
-    if (questions.length === currentIndexQuestion) {
-        return finishGame()
+    if (currentIndexQuestion >= questions.length) {
+        finishGame()
+        return
     }
 
     answerText.textContent = questions[currentIndexQuestion].question
-    questions[currentIndexQuestion].options.forEach(question => {
+    questions[currentIndexQuestion].options.forEach(option => {
         const newAnswer = document.createElement('button')
         newAnswer.classList.add('answer')
-        newAnswer.textContent = question.text
-        if(question.correct) {
-            newAnswer.dataset.correct = question.correct
+        newAnswer.textContent = option.text
+        if (option.correct) {
+            newAnswer.dataset.correct = "true"
         } 
         answersContainer.appendChild(newAnswer)
         newAnswer.addEventListener('click', selectAnswer)
     })
 }
 
-// Verifica se questão está certa ou errada
-function selectAnswer(event){
+// Verifica se a resposta está certa ou errada
+function selectAnswer(event) {
     const answerClicked = event.target
-    if(answerClicked.dataset.correct){
+    const isCorrect = answerClicked.dataset.correct === "true"
+
+    if (isCorrect) {
         document.body.classList.add('correct')
+        rightAnswers++ // Agora só incrementa se a resposta for correta
     } else {
         document.body.classList.add('error')
     }
 
     document.querySelectorAll('.answer').forEach(answer => {
-        if(answer.dataset.correct){
+        if (answer.dataset.correct === "true") {
             answer.classList.add('correct')
-            rigthAnswers++
         } else {
             answer.classList.add('error')
         }
-
         answer.disabled = true
     })
 
@@ -100,43 +102,43 @@ function selectAnswer(event){
     currentIndexQuestion++
 }
 
-// Exibe uma mensagem ao final do jogo, dependendo da performance do jogador
-function finishGame(){
+// Finaliza o jogo e exibe a mensagem final
+function finishGame() {
     const totalQuestions = questions.length
-    const performance = Math.floor(rigthAnswers * 100 / totalQuestions)
+    const performance = Math.floor((rightAnswers * 100) / totalQuestions)
     
     let message = ''
 
     switch (true) {
         case (performance >= 90):
-            message += 'Resultado excelente!'
+            message = 'Bem demais!'
             break
         case (performance >= 70):
-            message += 'Na média'
+            message = 'Na média da turma'
             break
         case (performance >= 30):
-            message += 'Precisa melhorar'
+            message = 'Tá mal ainda'
             break
         default:
-            message += 'Horrível'
+            message = 'Horrível'
     }
 
-    createFinalMessage(rigthAnswers, totalQuestions, message)
+    createFinalMessage(rightAnswers, totalQuestions, message)
 }
 
-// Cria a mensagem que será exibida no final do jogo
-function createFinalMessage(rigthAnswers, totalQuestions, message) {
+// Cria a mensagem final do jogo
+function createFinalMessage(rightAnswers, totalQuestions, message) {
     const p = document.createElement('p')
     p.classList.add('paragraph')
     p.innerHTML = `
-        Você acertou ${rigthAnswers} de ${totalQuestions} questões!
-        <span class="resultado-jogo">Resultado do Jogo: ${message}</span>
+        Você acertou ${rightAnswers} de ${totalQuestions} questões!<br>
+        Resultado do Jogo: <span class="resultado-jogo">${message}</span>
     `
 
     const button = document.createElement('button')
     button.classList.add('button', 'centerButton')
     button.textContent = 'Início'
-    button.onclick = function() {
+    button.onclick = function () {
         window.location.reload()
     }
 
@@ -145,79 +147,69 @@ function createFinalMessage(rigthAnswers, totalQuestions, message) {
     gameContainer.appendChild(button)
 }
 
-// Verifica se sessão de ajuda deverá ser oculta
-function initHelp(){
-    if(helpContainer.classList.contains('hidden')){
+// Verifica se a sessão de ajuda deve ser mostrada
+function initHelp() {
+    if (helpContainer.classList.contains('hidden')) {
         initContainer.classList.add('hidden')
         helpContainer.classList.remove('hidden')
     }
 }
 
-// Volta para a sessão de início ao clicar no botão de voltar
-function backHome(){
-    if(initContainer.classList.contains('hidden')){
+// Volta para a tela inicial
+function backHome() {
+    if (initContainer.classList.contains('hidden')) {
         helpContainer.classList.add('hidden')
         initContainer.classList.remove('hidden')
     }
 }
 
-// Botão de passar a questão
+// Botão de pular questão
 btnSkip.addEventListener('click', () => {
     if (!usedSkip) {
-      usedSkip = true
-      btnSkip.disabled = true
-      currentIndexQuestion++
-      nextQuestion()
+        usedSkip = true
+        btnSkip.disabled = true
+        currentIndexQuestion++
+        nextQuestion()
     }
-  })
-  
-  // Botão de eliminar duas opções falsas
-  btnEliminate.addEventListener('click', () => {
+})
+
+// Botão de eliminar duas opções falsas
+btnEliminate.addEventListener('click', () => {
     if (!usedEliminate) {
-      usedEliminate = true
-      btnEliminate.disabled = true
-      const incorrectAnswers = Array.from(document.querySelectorAll('.answer')).filter(
-        answer => !answer.dataset.correct
-      )
-  
-      // Remover até 2 respostas incorretas
-      incorrectAnswers.slice(0, 2).forEach(answer => {
-        answer.classList.add('hidden')
-      })
+        usedEliminate = true
+        btnEliminate.disabled = true
+        const incorrectAnswers = Array.from(document.querySelectorAll('.answer')).filter(
+            answer => !answer.dataset.correct
+        )
+
+        incorrectAnswers.slice(0, 2).forEach(answer => {
+            answer.classList.add('hidden')
+        })
     }
-  })
-  
-  // Botão de dica (mostra a probabilidade de uma resposta estar certa)
-  btnHint.addEventListener('click', () => {
+})
+
+// Botão de dica
+btnHint.addEventListener('click', () => {
     if (!usedHint) {
-      usedHint = true
-      btnHint.disabled = true
-  
-      const allAnswers = Array.from(document.querySelectorAll('.answer'))
-      const correctAnswer = allAnswers.find(answer => answer.dataset.correct)
-  
-      // Definir porcentagem da resposta correta
-      const correctProbability = Math.floor(Math.random() * 21) + 70 // Entre 70% e 90%
-      const remainingProbability = 100 - correctProbability
-  
-      // Distribuir a porcentagem restante igualmente entre as respostas incorretas
-      const incorrectAnswers = allAnswers.filter(answer => !answer.dataset.correct)
-      const sharedProbability = Math.floor(remainingProbability / incorrectAnswers.length)
-      const leftover = remainingProbability % incorrectAnswers.length
-  
-      // Aplicar porcentagens a cada resposta
-      allAnswers.forEach((answer, index) => {
-        let probability
-        if (answer === correctAnswer) {
-          probability = correctProbability
-        } else {
-          probability = sharedProbability
-          // Adicionar o "leftover" à última resposta incorreta para completar 100%
-          if (index === allAnswers.length - 1 && incorrectAnswers.includes(answer)) {
-            probability += leftover
-          }
-        }
-        answer.textContent += ` (${probability}%)`
-      })
+        usedHint = true
+        btnHint.disabled = true
+
+        const allAnswers = Array.from(document.querySelectorAll('.answer'))
+        const correctAnswer = allAnswers.find(answer => answer.dataset.correct)
+
+        const correctProbability = Math.floor(Math.random() * 21) + 70 // Entre 70% e 90%
+        const remainingProbability = 100 - correctProbability
+
+        const incorrectAnswers = allAnswers.filter(answer => !answer.dataset.correct)
+        const sharedProbability = Math.floor(remainingProbability / incorrectAnswers.length)
+        const leftover = remainingProbability % incorrectAnswers.length
+
+        allAnswers.forEach((answer, index) => {
+            let probability = answer === correctAnswer ? correctProbability : sharedProbability
+            if (index === allAnswers.length - 1 && incorrectAnswers.includes(answer)) {
+                probability += leftover
+            }
+            answer.textContent += ` (${probability}%)`
+        })
     }
 })
