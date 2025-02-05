@@ -2,7 +2,23 @@
 
 ### Descrição do Jogo
 
-Este projeto consiste em um quiz interativo voltado para o ensino de conceitos de Engenharia de Software. O jogo tem uma abordagem lúdica e dinâmica, permitindo que os jogadores testem seus conhecimentos enquanto se divertem. O jogador deve responder corretamente às perguntas para avançar e pode utilizar habilidades especiais para auxiliá-lo durante a partida.
+Este projeto consiste em um quiz interativo voltado para o ensino de conceitos de Planejamento de Projetos de Software, sendo o último trabalho da disciplina de extensão da Universidade Estadual do Ceará (UECE).
+
+A temática do jogo foi escolhida para auxiliar os jogadores a compreenderem aspectos fundamentais do planejamento na Engenharia de Software, como gestão de requisitos, cronogramas, riscos e metodologias ágeis. A abordagem lúdica facilita a absorção desses conceitos ao transformar o aprendizado em uma experiência interativa e divertida.
+
+Os jogadores devem responder corretamente às perguntas para avançar e podem utilizar habilidades especiais para auxiliá-los durante a partida.
+
+### Motivação tecnológica
+A escolha das tecnologias para este projeto seguiu princípios de simplicidade e acessibilidade para toda a equipe. Como o grupo possui pouca experiência em projetos front-end, optamos por um projeto Vanilla (HTML, CSS e JavaScript puro), garantindo maior compreensão e facilitação no desenvolvimento colaborativo.
+
+Além disso, decidimos não utilizar um banco de dados para armazenar as perguntas, pois isso simplifica a implementação e elimina a necessidade de servidores, permitindo que o jogo seja facilmente hospedado e acessado.
+
+### Equipe elaboradora do projeto
+- Pedro Otávio de Sousa Bezerra
+- James Taylor Pires Bezerra
+- Pedro Henrique Rocha Dos Santos Nonato
+- Matheus Alencar Castelo Branco
+- Oscar Vinicius Da Silva Rodrigues
 
 ### Estrutura do Projeto
 
@@ -24,8 +40,8 @@ Este projeto consiste em um quiz interativo voltado para o ensino de conceitos d
 └── README.md         (Documentação do projeto)
 ```
 
-### Funcionalidades / TO-DO ☑️
-**Principais atividades:**
+### Funcionalidades do Game
+**Funcionalidades gerais:**
 - [x]. Estrutura geral de código html
 - [x]. Adicionar classes e id´s em html
 - [x]. Estilizar o css conforme o necessário
@@ -33,11 +49,13 @@ Este projeto consiste em um quiz interativo voltado para o ensino de conceitos d
 - [x]. Adicionar habilidades do jogador (Passar, eliminar 2 e dica da plateia)
 - [ ]. Enviar o diretório para a hospedagem gratuita 
 
-**Extras:**
+**Funcionalidades a serem adicionadas:**
+- [ ]. Alterar texto explicativo em tela de ajuda
 - [ ]. Verificar a responsividade completa
 - [ ]. Verificar lógica de habilidades (1 por rodada)
 - [ ]. Implementar uma maneira de salvar o progresso do jogo
 - [ ]. Adicionar sons e vídeo no jogo
+- [ ]. Elaborar o documento de avaliação do jogo
 
 ### Como Colaborar
 
