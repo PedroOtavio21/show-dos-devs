@@ -1,5 +1,5 @@
 // Importação de banco de questões
-import questions from './quetions.js'
+import questions from './questions.js'
 
 // Importação dos áudios
 const questionSound = new Audio('./assets/audio/pergunta.mp3')
