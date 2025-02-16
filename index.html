@@ -21,7 +21,7 @@
 
     <!-- Seção de Introdução -->
     <section id="introduction" class="section-container introduction">
-      <img src="./assets/image/logo.webp" alt="Logo show do milhão">
+      <img class="quiz-logo" src="./assets/image/logo.webp" alt="Logo show do milhão">
       <h1>Bem-vindo ao Show dos Devs!</h1>
       <p>Teste seus conhecimentos e desbloqueie habilidades enquanto avança no jogo!</p>
       <div class="buttons-container">
@@ -32,47 +32,74 @@
 
     <!-- Seção de Ajuda -->
     <section id="help" class="section-container help hidden">
+      <img class="quiz-logo" src="./assets/image/logo.webp" alt="Logo show do milhão">
       <h2>Como jogar</h2>
       <p>
-        Este projeto é um Quiz Interativo inspirado no <strong>Show do Milhão</strong>, com 10 perguntas relacionadas a 
-        temática de <strong>"Planejamento de Projetos"</strong>.
+        O objetivo do jogo é <strong>responder corretamente às perguntas para acumular pontos 
+          e desbloquear habilidades</strong>. Clique em uma das respostas disponíveis para avançar.
       </p>
-      <p>O jogador poderá escolher entre <strong>4 alternativas</strong>, sendo <strong>apenas 1 correta</strong>. Além 
-        disso, o jogador poderá usar entre <strong>3 habilidades especiais</strong> uma vez por rodada: <strong>passar</strong> 
-        a pergunta, <strong>eliminar duas</strong> alternativas incorretas ou pedir uma <strong>dica da plateia</strong>. Divirta-se!</p>
+      <p>Você pode utilizar suas habilidades estratégicas para <strong>obter dicas e melhorar seu desempenho!</strong></p>
       <button id="btn-back" class="button">Voltar</button>
     </section>
 
     <!-- Seção do Jogo -->
-    <section id="game" class="section-container game hidden">
-      <header>
-        <span id="question" class="question">Quais são as linguagens tendência no mercado em 2025?</span>
-      </header>
-      <div id="answers" class="answers-container">
-        <!-- Botões das respostas (gerados dinâmicamento pelo JS) -->
-        <button class="answer">JavaScript</button>
-        <button class="answer">Python</button>
-        <button class="answer">Java</button>
-        <button class="answer">C#</button>
+    <section id="game" class="game hidden">
+      <div class="game-content">
+        <header>
+          <span id="question" class="question">Quais são as linguagens tendência no mercado em 2025?</span>
+        </header>
+        <div id="answers" class="answers-container">
+          <!-- Botões das respostas (gerados dinamicamente pelo JS) -->
+          <button class="answer">JavaScript</button>
+          <button class="answer">Python</button>
+          <button class="answer">Java</button>
+          <button class="answer">C#</button>
+        </div>
+        <!-- Elemento para passar para próxima questão, após acerto ou erro -->
+        <div id="next" class="next hidden">
+          <button id="btn-next" class="button">Prosseguir</button>
+        </div>
+        <div id="habilities" class="habilities-container">
+          <!-- Div contendo as habilidades a serem usadas pelo jogador -->
+          <div class="hability-container">
+            <div class="hability-button">
+              <button id="hability1" class="hability" disabled>
+                <span class="material-icons">start</span>
+              </button>
+            </div>
+            <div class="hability-text">
+              <p>Pular questão</p>
+            </div>
+          </div>
+          <div class="hability-container">
+            <div class="hability-button">
+              <button id="hability2" class="hability" disabled>
+                <span class="material-icons">looks_two</span>
+              </button>
+            </div>
+            <div class="hability-text">
+              <p>Eliminar alternativas</p>
+            </div>
+          </div>
+          <div class="hability-container">
+            <div class="hability-button">
+              <button id="hability3" class="hability" disabled>
+                <span class="material-icons">lightbulb</span>
+              </button>
+            </div>
+            <div class="hability-text">
+              <p>Dica</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- Elemento para passar para próxima questão, após acerto ou erro -->
-      <div id="next" class="next hidden">
-        <button id="btn-next" class="button">Prosseguir</button>
+    
+      <div class="game-image">
+        <img src="./assets/image/silviosantos.png" alt="Imagem relacionada ao quiz">
       </div>
-      <div id="habilities" class="habilities-container">
-        <!-- Div contento as habilidades a serem usadas pelo jogador -->
-        <button id="hability1" class="hability" disabled>
-          <span class="material-icons">start</span>
-        </button>
-        <button id="hability2" class="hability" disabled>
-          <span class="material-icons">looks_two</span>
-        </button>
-        <button id="hability3" class="hability" disabled>
-          <span class="material-icons">lightbulb</span>
-        </button>
-      </div>
-    </section>
+    </section>    
 
+    <audio id="background-music" src="./assets/audio/tema.mp3" loop autoplay></audio>
   </div>
 
 </body>

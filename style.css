@@ -4,8 +4,8 @@
     
     --color-primary-300: #298eb0;
     --color-primary-500: #00a5fd;
-    --color-secondary: #ffcf01;
-    --color-btn: #0c29a9;
+    --color-secondary: white;
+    --color-btn: #298eb0;
     --color-white: #fff;
     --color-dark: #2c2c2c;
     --color-correct: #00db63;
@@ -28,13 +28,18 @@
 }
 
 body {
-    background-color: var(--color-primary-500);
+    background-image: url('assets/image/cortinas.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: var(--color-secondary);
     font-family: var(--font-family);
+    text-transform: uppercase !important;
 }
 
 h1, h2 {
     text-transform: uppercase;
+    font-weight: 900;
 }
 
 /* Container principal */
@@ -49,7 +54,7 @@ h1, h2 {
 
 /* Seção que engloba cada "página do jogo" (Introdução, Ajuda e Jogo)*/
 .section-container {
-    background-color: var(--color-primary-300);
+    background-color: brown;
     border-radius: .75rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
     display: flex;
@@ -60,7 +65,7 @@ h1, h2 {
 }
 
 /* Introdução */
-.introduction img {
+.quiz-logo {
     border-radius: 999px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     max-width: 150px;
@@ -72,7 +77,6 @@ h1, h2 {
 }
 
 .introduction p {
-    color: var(--color-white);
     font-size: 1.125rem;
     line-height: 1.5;
 }
@@ -102,7 +106,6 @@ h1, h2 {
 
 .button:hover {
     border: 2px solid var(--color-secondary);
-    color: var(--color-secondary);
 }
 
 /* Ajuda */
@@ -127,12 +130,12 @@ h1, h2 {
 /* Jogo */
 .game .question {
     font-size: var(--pd-sm);
+    font-weight: 700;
 }
 
 .answers-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--pd-sm);
+    gap: 12px;
 }
 
 .answer {
@@ -146,6 +149,7 @@ h1, h2 {
     padding: .75rem 1rem;
     cursor: pointer;
     transition: .2s;
+    text-transform: uppercase !important;
 }
 
 .answer:disabled {
@@ -195,7 +199,7 @@ h1, h2 {
 
 /* Estilos auxiliares */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .correct {
@@ -216,9 +220,8 @@ h1, h2 {
 }
 
 .resultado-jogo {
-    color: var(--color-btn); /* Exemplo de cor vermelha */
     font-weight: bold;
-    text-transform: uppercase;
+    color: #ff0000; /* Exemplo de cor vermelha */
 }
 
 /* Responsividade em aparelhos maiores */
@@ -241,12 +244,72 @@ h1, h2 {
     .help p {
         font-size: 1.25rem;
     }
+}
 
-    .answers-container {
-        grid-template-columns: repeat(2, 2fr);
+.hability-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+#game {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px; /* Espaço entre as colunas */
+    background-color: brown;
+    border-radius: .75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    padding: var(--pd-sm);
+    margin: 24px;
+}
+
+#game header {
+    margin: 18px 0;
+}
+
+#game .answers-container {
+    margin-bottom: 24px;
+}
+
+/* O conteúdo principal ocupa 70% da largura */
+.game-content {
+    width: 70%;
+}
+
+/* A imagem ocupa 30% da largura */
+.game-image {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+  
+/* Garantir que a imagem seja responsiva e não quebre o layout */
+.game-image img {
+    max-width: 60%;
+    height: auto;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+#btn-next {
+    margin-bottom: 24px;
+}
+
+/* Adaptação para telas menores */
+@media (max-width: 768px) {
+    #game {
+        flex-direction: column; /* Coloca as colunas em uma linha vertical em telas menores */
+        align-items: center;
     }
 
-    .habilities-container {
-        justify-content: right;
+    .game-content {
+        width: 100%;
+    }
+
+    .game-image {
+        width: 100%;
+        margin-top: 20px;
     }
 }
