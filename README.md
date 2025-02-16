@@ -53,11 +53,11 @@ Além disso, decidimos não utilizar um banco de dados para armazenar as pergunt
 - [ ]. Enviar o diretório para a hospedagem gratuita 
 
 **Funcionalidades a serem adicionadas:**
-- [ ]. Alterar texto explicativo em tela de ajuda
+- [x]. Alterar texto explicativo em tela de ajuda
 - [ ]. Verificar a responsividade completa
-- [ ]. Verificar lógica de habilidades (1 por rodada)
+- [x]. Verificar lógica de habilidades (1 por rodada)
 - [ ]. Implementar uma maneira de salvar o progresso do jogo
-- [ ]. Adicionar sons e vídeo no jogo
+- [x]. Adicionar sons e imagem de fundo ao jogo
 - [ ]. Elaborar o documento de avaliação do jogo
 
 ### Como Colaborar
