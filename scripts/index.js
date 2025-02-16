@@ -1,6 +1,11 @@
 // Importação de banco de questões
 import questions from './quetions.js'
 
+// Importação dos áudios
+const questionSound = new Audio('./assets/audio/pergunta.mp3')
+const correctSound = new Audio('./assets/audio/certa.mp3')
+const wrongSound = new Audio('./assets/audio/errou.mp3')
+
 // Adquirindo principais botões e sessões pelo DOM
 const btnStartGame = document.getElementById('btn-init')
 const btnHelp = document.getElementById('btn-help')
@@ -24,10 +29,14 @@ const btnHint = document.getElementById('hability3')
 let usedSkip = false
 let usedEliminate = false
 let usedHint = false
+let usedAbilityThisQuestion = false;
 
 // Índice de questões
 let currentIndexQuestion = 0
 let rightAnswers = 0
+
+const backgroundMusic = document.getElementById('background-music')
+backgroundMusic.volume = 0.33
 
 // Adicionando eventos aos botões
 btnStartGame.addEventListener('click', startGame)
@@ -53,6 +62,8 @@ function resetStates() {
 
     document.body.removeAttribute('class')
     nextContainer.classList.add('hidden')
+
+    usedAbilityThisQuestion = false;
 }
 
 // Passa para a próxima questão
@@ -64,11 +75,14 @@ function nextQuestion() {
         return
     }
 
+    // Toca o som da pergunta
+    playQuestionSound();
+
     answerText.textContent = questions[currentIndexQuestion].question
-    questions[currentIndexQuestion].options.forEach(option => {
+    questions[currentIndexQuestion].options.forEach((option, index) => {
         const newAnswer = document.createElement('button')
         newAnswer.classList.add('answer')
-        newAnswer.textContent = option.text
+        newAnswer.textContent = `${index + 1}) ${option.text}`
         if (option.correct) {
             newAnswer.dataset.correct = "true"
         } 
@@ -85,8 +99,10 @@ function selectAnswer(event) {
     if (isCorrect) {
         document.body.classList.add('correct')
         rightAnswers++ // Agora só incrementa se a resposta for correta
+        playCorrectSound(); // Toca som de acerto
     } else {
         document.body.classList.add('error')
+        playWrongSound(); // Toca som de erro
     }
 
     document.querySelectorAll('.answer').forEach(answer => {
@@ -147,6 +163,24 @@ function createFinalMessage(rightAnswers, totalQuestions, message) {
     gameContainer.appendChild(button)
 }
 
+// Função para tocar o som da pergunta
+function playQuestionSound() {
+    questionSound.currentTime = 0; // Reinicia o áudio caso já esteja tocando
+    questionSound.play();
+}
+
+// Função para tocar o som ao acertar
+function playCorrectSound() {
+    correctSound.currentTime = 0;
+    correctSound.play();
+}
+
+// Função para tocar o som ao errar
+function playWrongSound() {
+    wrongSound.currentTime = 0;
+    wrongSound.play();
+}
+
 // Verifica se a sessão de ajuda deve ser mostrada
 function initHelp() {
     if (helpContainer.classList.contains('hidden')) {
@@ -165,51 +199,54 @@ function backHome() {
 
 // Botão de pular questão
 btnSkip.addEventListener('click', () => {
-    if (!usedSkip) {
-        usedSkip = true
-        btnSkip.disabled = true
-        currentIndexQuestion++
-        nextQuestion()
+    if (!usedAbilityThisQuestion && !usedSkip) {
+        usedSkip = true;
+        usedAbilityThisQuestion = true;
+        btnSkip.disabled = true;
+        currentIndexQuestion++;
+        nextQuestion();
     }
-})
+});
 
 // Botão de eliminar duas opções falsas
 btnEliminate.addEventListener('click', () => {
-    if (!usedEliminate) {
-        usedEliminate = true
-        btnEliminate.disabled = true
+    if (!usedAbilityThisQuestion && !usedEliminate) {
+        usedEliminate = true;
+        usedAbilityThisQuestion = true;
+        btnEliminate.disabled = true;
         const incorrectAnswers = Array.from(document.querySelectorAll('.answer')).filter(
             answer => !answer.dataset.correct
-        )
+        );
 
         incorrectAnswers.slice(0, 2).forEach(answer => {
-            answer.classList.add('hidden')
-        })
+            answer.classList.add('hidden');
+        });
     }
-})
+});
 
 // Botão de dica
 btnHint.addEventListener('click', () => {
-    if (!usedHint) {
-        usedHint = true
-        btnHint.disabled = true
+    if (!usedAbilityThisQuestion && !usedHint) {
+        usedHint = true;
+        usedAbilityThisQuestion = true; // Marca que uma habilidade foi usada
+        btnHint.disabled = true;
 
-        const allAnswers = Array.from(document.querySelectorAll('.answer'))
-        const correctAnswer = allAnswers.find(answer => answer.dataset.correct)
+        const allAnswers = Array.from(document.querySelectorAll('.answer'));
+        const correctAnswer = allAnswers.find(answer => answer.dataset.correct);
 
-        const correctProbability = Math.floor(Math.random() * 21) + 70 // Entre 70% e 90%
-        const remainingProbability = 100 - correctProbability
+        const correctProbability = Math.floor(Math.random() * 21) + 70; // Entre 70% e 90%
+        const remainingProbability = 100 - correctProbability;
 
-        const incorrectAnswers = allAnswers.filter(answer => !answer.dataset.correct)
-        const sharedProbability = Math.floor(remainingProbability / incorrectAnswers.length)
-        const leftover = remainingProbability % incorrectAnswers.length
+        const incorrectAnswers = allAnswers.filter(answer => !answer.dataset.correct);
+        const sharedProbability = Math.floor(remainingProbability / incorrectAnswers.length);
+        const leftover = remainingProbability % incorrectAnswers.length;
 
         allAnswers.forEach((answer, index) => {
-            let probability = answer === correctAnswer ? correctProbability : sharedProbability
-            if (index === allAnswers.length - 1 && incorrectAnswers.includes(answer)) {
-                probability += leftover
+            let probability = answer === correctAnswer ? correctProbability : sharedProbability;
+            if (index === allAnswers.length - 1 && answer !== correctAnswer) {
+                probability += leftover;
             }
-            answer.textContent += ` (${probability}%)`
-        })
+            answer.textContent += ` (${probability}%)`;
+        });
     }
-})
+});
