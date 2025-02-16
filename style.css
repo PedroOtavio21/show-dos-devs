@@ -4,7 +4,7 @@
     
     --color-primary-300: #298eb0;
     --color-primary-500: #00a5fd;
-    --color-secondary: #f1e05a;
+    --color-secondary: #ffcf01;
     --color-btn: #0c29a9;
     --color-white: #fff;
     --color-dark: #2c2c2c;
@@ -72,6 +72,7 @@ h1, h2 {
 }
 
 .introduction p {
+    color: var(--color-white);
     font-size: 1.125rem;
     line-height: 1.5;
 }
@@ -101,6 +102,7 @@ h1, h2 {
 
 .button:hover {
     border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
 }
 
 /* Ajuda */
@@ -214,8 +216,9 @@ h1, h2 {
 }
 
 .resultado-jogo {
+    color: var(--color-btn); /* Exemplo de cor vermelha */
     font-weight: bold;
-    color: #ff0000; /* Exemplo de cor vermelha */
+    text-transform: uppercase;
 }
 
 /* Responsividade em aparelhos maiores */
