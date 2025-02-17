@@ -55,9 +55,11 @@ Além disso, decidimos não utilizar um banco de dados para armazenar as pergunt
 **Funcionalidades a serem adicionadas:**
 - [x]. Alterar texto explicativo em tela de ajuda
 - [ ]. Verificar a responsividade completa
+- [ ]. Adicionar uma sequencia aleatória no banco de questões
 - [x]. Verificar lógica de habilidades (1 por rodada)
 - [ ]. Implementar uma maneira de salvar o progresso do jogo
 - [x]. Adicionar sons e imagem de fundo ao jogo
+- [ ]. Corrigir iteração de sons
 - [ ]. Elaborar o documento de avaliação do jogo
 
 ### Como Colaborar
