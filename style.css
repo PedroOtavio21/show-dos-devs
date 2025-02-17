@@ -10,6 +10,7 @@
     --color-dark: #2c2c2c;
     --color-correct: #00db63;
     --color-error: #dd0000;
+    --color-result: #ece92a;
     
     --font-family: "JetBrains Mono", serif;
     
@@ -221,7 +222,7 @@ h1, h2 {
 
 .resultado-jogo {
     font-weight: bold;
-    color: #ff0000; /* Exemplo de cor vermelha */
+    color: var(--color-result); /* Exemplo de cor vermelha */
 }
 
 /* Responsividade em aparelhos maiores */
