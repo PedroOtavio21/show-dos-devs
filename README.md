@@ -50,14 +50,16 @@ Além disso, decidimos não utilizar um banco de dados para armazenar as pergunt
 - [x]. Estilizar o css conforme o necessário
 - [x]. Aplicar a lógica principal do jogo
 - [x]. Adicionar habilidades do jogador (Passar, eliminar 2 e dica da plateia)
-- [ ]. Enviar o diretório para a hospedagem gratuita 
+- [x]. Enviar o diretório para a hospedagem gratuita 
 
 **Funcionalidades a serem adicionadas:**
 - [x]. Alterar texto explicativo em tela de ajuda
 - [ ]. Verificar a responsividade completa
+- [ ]. Deixar código organizado e documentado
 - [ ]. Adicionar uma sequencia aleatória no banco de questões
 - [x]. Verificar lógica de habilidades (1 por rodada)
 - [ ]. Implementar uma maneira de salvar o progresso do jogo
+- [ ]. Adicionar sistema de pontuação no jogo (ex.: R$1000, R$3000, etc)
 - [x]. Adicionar sons e imagem de fundo ao jogo
 - [ ]. Corrigir iteração de sons
 - [ ]. Elaborar o documento de avaliação do jogo
