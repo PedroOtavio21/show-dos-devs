@@ -25,6 +25,7 @@ Além disso, decidimos não utilizar um banco de dados para armazenar as pergunt
 
 ### Estrutura do Projeto
 
+Segue abaixo uma estrutura prévia do que seria a organização de pastas ao final do projeto
 ```
 /quiz-game
 │
