@@ -38,6 +38,11 @@ let rightAnswers = 0
 const backgroundMusic = document.getElementById('background-music')
 backgroundMusic.volume = 0.33
 
+// Função para embaralhar as questões antes de iniciar
+function shuffleQuestions() {
+    questions.sort(() => Math.random() - 0.5);
+}
+
 // Adicionando eventos aos botões
 btnStartGame.addEventListener('click', startGame)
 btnHelp.addEventListener('click', initHelp)
@@ -46,6 +51,8 @@ btnNext.addEventListener('click', nextQuestion)
 
 // Inicializa o quiz
 function startGame() {
+    backgroundMusic.pause()
+    shuffleQuestions()
     initContainer.classList.add('hidden')
     gameContainer.classList.remove('hidden')
     btnSkip.disabled = false
@@ -64,6 +71,7 @@ function resetStates() {
     nextContainer.classList.add('hidden')
 
     usedAbilityThisQuestion = false;
+    enableAbilities() // Reativa as habilidades para a próxima questão
 }
 
 // Passa para a próxima questão
@@ -106,16 +114,31 @@ function selectAnswer(event) {
     }
 
     document.querySelectorAll('.answer').forEach(answer => {
+        answer.disabled = true
         if (answer.dataset.correct === "true") {
             answer.classList.add('correct')
         } else {
             answer.classList.add('error')
         }
-        answer.disabled = true
     })
 
+    disableAbilities()
     nextContainer.classList.remove('hidden')
     currentIndexQuestion++
+}
+
+// Função para desativar as habilidades após responder
+function disableAbilities() {
+    btnSkip.disabled = true;
+    btnEliminate.disabled = true;
+    btnHint.disabled = true;
+}
+
+// Função para reativar habilidades para a próxima questão
+function enableAbilities() {
+    if (!usedSkip) btnSkip.disabled = false;
+    if (!usedEliminate) btnEliminate.disabled = false;
+    if (!usedHint) btnHint.disabled = false;
 }
 
 // Finaliza o jogo e exibe a mensagem final
@@ -195,6 +218,7 @@ function backHome() {
         helpContainer.classList.add('hidden')
         initContainer.classList.remove('hidden')
     }
+    backgroundMusic.play()
 }
 
 // Botão de pular questão
