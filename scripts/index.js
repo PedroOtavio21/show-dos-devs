@@ -150,16 +150,16 @@ function finishGame() {
 
     switch (true) {
         case (performance >= 90):
-            message = 'Bem demais!'
+            message = 'Excelente'
             break
         case (performance >= 70):
-            message = 'Na média da turma'
+            message = 'Bom'
             break
         case (performance >= 30):
-            message = 'Tá mal ainda'
+            message = 'Médio'
             break
         default:
-            message = 'Horrível'
+            message = 'Ruim'
     }
 
     createFinalMessage(rightAnswers, totalQuestions, message)

@@ -55,14 +55,15 @@ Segue abaixo uma estrutura prévia do que seria a organização de pastas ao fin
 
 **Funcionalidades a serem adicionadas:**
 - [x]. Alterar texto explicativo em tela de ajuda
+- [ ]. Alterar mensagem de exibição ao final do jogo
 - [ ]. Verificar a responsividade completa
 - [ ]. Deixar código organizado e documentado
-- [ ]. Adicionar uma sequencia aleatória no banco de questões
+- [x]. Adicionar uma sequencia aleatória no banco de questões
 - [x]. Verificar lógica de habilidades (1 por rodada)
 - [ ]. Implementar uma maneira de salvar o progresso do jogo
 - [ ]. Adicionar sistema de pontuação no jogo (ex.: R$1000, R$3000, etc)
 - [x]. Adicionar sons e imagem de fundo ao jogo
-- [ ]. Corrigir iteração de sons
+- [x]. Corrigir iteração de sons
 - [ ]. Elaborar o documento de avaliação do jogo
 
 ### Como Colaborar
