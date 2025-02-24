@@ -11,6 +11,9 @@ O jogo é composto por três páginas principais:
 - Página de Ajuda: Explica as regras principais, como avançar no jogo e utilizar habilidades extras.
 - Página do Jogo: Contém um container onde o jogo é jogado, apresentando as questões e as opções de resposta.
 
+#### Link e Imagens do projeto
+Segue o link de projeto em execução: [Show dos Devs](https://pedrootavio21.github.io/show-dos-devs/)
+
 ### Motivação tecnológica
 A escolha das tecnologias para este projeto seguiu princípios de **simplicidade e acessibilidade** para toda a equipe. Como o grupo possui pouca experiência em projetos front-end, optamos por um projeto Vanilla (HTML, CSS e JavaScript puro), garantindo maior compreensão e facilitação no desenvolvimento colaborativo.
 
