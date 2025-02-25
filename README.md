@@ -13,6 +13,7 @@ O jogo é composto por três páginas principais:
 
 #### Link e Imagens do projeto
 Segue o link de projeto em execução: [Show dos Devs](https://pedrootavio21.github.io/show-dos-devs/)
+Vídeo do projeto em execução: [Vídeo do Executável](https://youtu.be/TEH25a0XAkQ)
 
 ### Motivação tecnológica
 A escolha das tecnologias para este projeto seguiu princípios de **simplicidade e acessibilidade** para toda a equipe. Como o grupo possui pouca experiência em projetos front-end, optamos por um projeto Vanilla (HTML, CSS e JavaScript puro), garantindo maior compreensão e facilitação no desenvolvimento colaborativo.
